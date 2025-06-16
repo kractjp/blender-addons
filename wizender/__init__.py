@@ -7,7 +7,7 @@ bl_info = {
     "name": "Wizender",
     "author": "KRACT",
     "version": (1, 0),
-    "blender": (3, 0, 0),
+    "blender": (4, 2, 0),
     "location": "Properties > Output Properties > Wizender",
     "description": "Sets render output settings based on project file name via UI button or on save.",
     "category": "Render",
