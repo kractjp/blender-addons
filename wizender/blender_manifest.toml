@@ -1,0 +1,24 @@
+# Blender extension manifest for Wizender
+# This enables installation as a ZIP file and drag-and-drop support in Blender 4.2+
+
+schema_version = "1.0.0"
+
+id = "wizender"
+name = "Wizender"
+tagline = "Magically configure render settings based on project filename"
+version = "1.0.0"
+type = "add-on"
+
+maintainer = "KRACT"
+license = ["SPDX:GPL-3.0-or-later"]
+
+blender_version_min = "4.2.0"
+
+website = "https://extensions.blender.org/add-ons/wizender"
+tags = ["Render", "System"]
+
+[permissions]
+files = "Output render files to project directories"
+
+[build]
+optimized_size = true
