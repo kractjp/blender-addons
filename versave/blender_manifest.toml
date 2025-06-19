@@ -1,0 +1,23 @@
+# Blender extension manifest for Versave
+# This enables installation as a ZIP file and drag-and-drop support in Blender 4.2+
+
+schema_version = "1.0.0"
+
+id = "versave"
+name = "Versave"
+tagline = "Enhanced incremental save with proper versioning format"
+version = "1.0.0"
+type = "add-on"
+
+maintainer = "KRACT"
+license = ["SPDX:GPL-3.0-or-later"]
+
+blender_version_min = "4.2.0"
+
+tags = ["System", "File", "Workflow"]
+
+[permissions]
+files = "Save versioned blend files to disk"
+
+[build]
+optimized_size = true
