@@ -14,7 +14,7 @@ license = ["SPDX:GPL-3.0-or-later"]
 
 blender_version_min = "4.2.0"
 
-website = "https://extensions.blender.org/add-ons/wizender"
+website = "https://addons.kract.jp/wizender"
 tags = ["Render", "System"]
 
 [permissions]
