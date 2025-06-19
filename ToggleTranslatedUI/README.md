@@ -47,7 +47,7 @@ Both settings are synchronized when toggling.
 ## Technical Requirements
 
 - **Blender Version**: 4.2.0 or later
-- **License**: GPL 3.0 or later
+- **License**: GPL 2.0 or later
 
 ## Credits and Original Work
 
