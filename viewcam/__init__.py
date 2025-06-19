@@ -1,14 +1,15 @@
 import bpy
 import bmesh
 from mathutils import Matrix
+import platform
 
 bl_info = {
     "name": "Viewcam",
     "author": "KRACT",
-    "version": (1, 0, 0),
+    "version": (1, 0, 1),
     "blender": (4, 2, 0),
     "description": "Set current viewport view to active camera instantly",
-    "location": "3D Viewport Header, shortcut: Ctrl+Shift+C",
+    "location": "3D Viewport Header, shortcut: Cmd+Shift+C / Cmd+Shift+Alt+C",
     "category": "Camera"
 }
 
@@ -57,7 +58,57 @@ class VIEWCAM_OT_set_view_to_camera(bpy.types.Operator):
         # 変更を更新
         context.view_layer.update()
         
+        # カメラビューに切り替え
+        bpy.ops.view3d.view_camera()
+        
         self.report({'INFO'}, f"Camera '{camera.name}' set to current view")
+        return {'FINISHED'}
+
+
+class VIEWCAM_OT_toggle_camera_to_view(bpy.types.Operator):
+    """Toggle 'Camera to View' lock on/off"""
+    bl_idname = "viewcam.toggle_camera_to_view"
+    bl_label = "Toggle Camera to View"
+    bl_options = {'REGISTER', 'UNDO'}
+    
+    @classmethod
+    def poll(cls, context):
+        # 3Dビューポートかつカメラビューにいるかチェック
+        if not (context.area and context.area.type == 'VIEW_3D'):
+            return False
+        
+        # カメラビューかどうか確認
+        region_3d = None
+        for region in context.area.regions:
+            if region.type == 'WINDOW':
+                region_3d = region.data
+                break
+        
+        return region_3d and region_3d.view_perspective == 'CAMERA'
+    
+    def execute(self, context):
+        camera = context.scene.camera
+        if not camera:
+            self.report({'WARNING'}, "No active camera in scene")
+            return {'CANCELLED'}
+        
+        # カメラビューにいることを再確認
+        region_3d = None
+        for region in context.area.regions:
+            if region.type == 'WINDOW':
+                region_3d = region.data
+                break
+        
+        if not region_3d or region_3d.view_perspective != 'CAMERA':
+            self.report({'WARNING'}, "Must be in camera view to toggle Lock Camera to View")
+            return {'CANCELLED'}
+        
+        # Lock Camera to Viewの状態を切り替え
+        space_data = context.space_data
+        space_data.lock_camera = not space_data.lock_camera
+        
+        status = "enabled" if space_data.lock_camera else "disabled"
+        self.report({'INFO'}, f"Lock Camera to View: {status}")
         return {'FINISHED'}
 
 
@@ -76,25 +127,45 @@ addon_keymaps = []
 def register():
     """アドオン登録"""
     bpy.utils.register_class(VIEWCAM_OT_set_view_to_camera)
+    bpy.utils.register_class(VIEWCAM_OT_toggle_camera_to_view)
     bpy.types.VIEW3D_HT_header.append(draw_viewcam_button)
     
     # キーボードショートカットを追加
     wm = bpy.context.window_manager
     if wm.keyconfigs.addon:
         km = wm.keyconfigs.addon.keymaps.new(name='3D View', space_type='VIEW_3D')
-        kmi = km.keymap_items.new(
+        
+        # macOS用にosmyかどうかでキーマップを変更
+        is_macos = platform.system() == 'Darwin'
+        
+        # View to Camera (Cmd+Shift+C / Ctrl+Shift+C)
+        kmi1 = km.keymap_items.new(
             'viewcam.set_view_to_camera',
             type='C',
             value='PRESS',
-            ctrl=True,
+            oskey=is_macos,
+            ctrl=not is_macos,
             shift=True
         )
-        addon_keymaps.append((km, kmi))
+        addon_keymaps.append((km, kmi1))
+        
+        # Toggle Camera to View (Cmd+Shift+Alt+C / Ctrl+Shift+Alt+C)
+        kmi2 = km.keymap_items.new(
+            'viewcam.toggle_camera_to_view',
+            type='C',
+            value='PRESS',
+            oskey=is_macos,
+            ctrl=not is_macos,
+            shift=True,
+            alt=True
+        )
+        addon_keymaps.append((km, kmi2))
 
 
 def unregister():
     """アドオン登録解除"""
     bpy.utils.unregister_class(VIEWCAM_OT_set_view_to_camera)
+    bpy.utils.unregister_class(VIEWCAM_OT_toggle_camera_to_view)
     bpy.types.VIEW3D_HT_header.remove(draw_viewcam_button)
     
     # キーボードショートカットを削除
