@@ -70,7 +70,7 @@ class WIZENDER_AddonPreferences(bpy.types.AddonPreferences):
         
         # 設定セクション
         box = layout.box()
-        box.label(text="Render Settings", icon='RENDER_ANIMATION')
+        box.label(text="Render Global Settings", icon='RENDER_ANIMATION')
         
         # 出力パス設定
         box.prop(self, "output_path")
@@ -110,7 +110,7 @@ def set_render_settings():
     render.image_settings.color_mode = addon_prefs.color_mode
     render.image_settings.color_depth = addon_prefs.color_depth
 
-    print(f"[Wizender] Render settings applied for project '{project_name}'.")
+    print(f"[Wizender] Render global settings applied for project '{project_name}'.")
     print(f"  - Output path: {output_path}")
     print(f"  - Format: {addon_prefs.file_format}")
     print(f"  - Color mode: {addon_prefs.color_mode}")
@@ -166,7 +166,7 @@ class WIZENDER_PT_output_panel(bpy.types.Panel):
 class WIZENDER_OT_set_settings(bpy.types.Operator):
     bl_idname = "wizender.set_settings"
     bl_label = "Apply Wizender Settings"
-    bl_description = "Set render settings based on project filename"
+    bl_description = "Set render global settings based on project filename"
 
     def execute(self, context):
         set_render_settings()
