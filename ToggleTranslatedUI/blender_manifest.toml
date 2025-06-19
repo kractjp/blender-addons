@@ -1,0 +1,24 @@
+# Blender extension manifest for Toggle Translated UI
+# This enables installation as a ZIP file and drag-and-drop support in Blender 4.2+
+
+schema_version = "1.0.0"
+
+id = "toggle_translated_ui"
+name = "Toggle Translated UI"
+tagline = "Toggle between translated and non-translated UI with custom icons"
+version = "3.1.0"
+type = "add-on"
+
+maintainer = "Original: Satoshi Yamasaki(yamyam), Converted: Toudou++, 4.2: KRACT"
+license = ["SPDX:GPL-2.0-or-later"]
+
+blender_version_min = "4.2.0"
+
+website = "https://www.cgradproject.com/archives/5503/"
+tags = ["System", "Interface", "Translation"]
+
+[permissions]
+# No special permissions required for this add-on
+
+[build]
+optimized_size = true
