@@ -1,0 +1,23 @@
+# Blender extension manifest for Viewcam
+# This enables installation as a ZIP file and drag-and-drop support in Blender 4.2+
+
+schema_version = "1.0.0"
+
+id = "viewcam"
+name = "Viewcam"
+tagline = "Set current viewport view to active camera instantly"
+version = "1.0.0"
+type = "add-on"
+
+maintainer = "KRACT"
+license = ["SPDX:GPL-3.0-or-later"]
+
+blender_version_min = "4.2.0"
+
+tags = ["Camera", "Viewport", "Animation"]
+
+[permissions]
+# No special permissions required for this add-on
+
+[build]
+optimized_size = true
