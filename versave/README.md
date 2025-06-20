@@ -42,12 +42,14 @@ Once installed, Versave automatically enhances both save operations:
 ### Initial Save (Cmd+S)
 1. **For new files**: Save dialog will suggest "untitled_v1.blend" by default
 2. **Type your project name**: e.g., "myproject" → creates the following structure:
-   ```
+
+   ```folder
    myproject/
    ├── myproject_v1.blend
    ├── render/
    └── tex/
    ```
+
 3. **For existing files**: Works normally (saves current file)
 
 ### Incremental Save (Cmd+Alt+S)
