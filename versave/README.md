@@ -109,7 +109,3 @@ For issues, feature requests, or questions, please create an issue in the projec
 ## License
 
 This project is licensed under the GPL 3.0 or later license.
-
----
-
-**Created by KRACT** - Making Blender's file versioning more consistent and professional.
