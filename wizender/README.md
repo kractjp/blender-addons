@@ -80,8 +80,3 @@ This project is licensed under the GPL 3.0 or later license. See the LICENSE fil
 ## Support
 
 For bug reports and feature requests, please visit the project repository.
-
-## Developer Information
-
-- **Author**: KRACT
-- **Version**: 1.0.0
