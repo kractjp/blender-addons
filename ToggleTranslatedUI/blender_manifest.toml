@@ -14,7 +14,7 @@ license = ["SPDX:GPL-2.0-or-later"]
 
 blender_version_min = "4.2.0"
 
-website = "https://www.cgradproject.com/archives/5503/"
+website = "https://github.com/kractjp/blender-addons/tree/main/ToggleTranslatedUI"
 tags = ["System", "Interface", "Translation"]
 
 [permissions]
