@@ -1,7 +1,5 @@
 # Viewpie
 
-![Viewpie Sample](./.images/viewpie_01.png)
-
 A powerful Blender add-on that revolutionizes 3D viewport navigation with an intuitive pie menu system. Navigate through different views with lightning speed using radial menus that put all essential viewpoints at your fingertips.
 
 ## Features
