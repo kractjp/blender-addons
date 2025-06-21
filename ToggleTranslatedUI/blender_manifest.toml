@@ -12,7 +12,7 @@ type = "add-on"
 maintainer = "Original: Satoshi Yamasaki(yamyam), Converted: Toudou++, 4.2: KRACT"
 license = ["SPDX:GPL-2.0-or-later"]
 
-blender_version_min = "4.2.0"
+blender_version_min = "2.83.0"
 
 website = "https://github.com/kractjp/blender-addons/tree/main/ToggleTranslatedUI"
 tags = ["System", "Interface", "Translation"]

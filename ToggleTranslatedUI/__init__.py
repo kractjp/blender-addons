@@ -6,7 +6,7 @@ bl_info = {
     "name": "Toggle Translated UI",
     "author": "Original:Satoshi Yamasaki(yamyam), Converted to 2.83: Toudou++, 4.2: KRACT",
     "version": (3, 1, 0),
-    "blender": (4, 2, 0),
+    "blender": (2, 83, 0),
     "description": "Toggle International Fonts option to switch translated / non transleted UI with custom icons.",
     "location": "3D Viewport Header, shortcut: END key",
     "wiki_url": "https://www.cgradproject.com/archives/5503/",

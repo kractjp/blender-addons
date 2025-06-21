@@ -12,20 +12,28 @@ A magical Blender add-on that automatically configures render output settings ba
 
 ## Installation
 
-### Traditional Add-on Installation (Blender 3.0+)
-1. Download `wizender_v1.0.0.zip`
-2. Go to **Edit > Preferences > Add-ons**
-3. Click **Install** and select the ZIP file
-4. Enable **Wizender**
+### Method 1: Remote Repository (Recommended)
+1. Go to `Edit > Preferences > Extensions`
+2. Click the dropdown arrow next to "Repositories"
+3. Click "Add Remote Repository"
+4. Enter the repository URL: `https://extensions.kract.jp/api/v1/extensions/`
+5. Click "Add Repository"
+6. Browse and install "Wizender" from the repository
 
-### Extension Installation (Blender 4.2+)
+### Method 2: Extension Installation (Blender 4.2+)
 1. Go to **Edit > Preferences > Extensions**
 2. Click **Install Extension**
 3. Select `wizender_v1.0.0.zip` and install
 
-### Drag & Drop Installation (Blender 4.2+)
+### Method 3: Drag & Drop Installation (Blender 4.2+)
 1. Drag and drop `wizender_v1.0.0.zip` into the Blender viewport
 2. Click **Install** in the confirmation dialog
+
+### Method 4: Traditional Add-on Installation (Blender 3.0+)
+1. Download `wizender_v1.0.0.zip`
+2. Go to **Edit > Preferences > Add-ons**
+3. Click **Install** and select the ZIP file
+4. Enable **Wizender**
 
 ## Usage
 
