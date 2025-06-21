@@ -57,6 +57,29 @@ Simply drag ZIP files into Blender - modern and effortless.
 ### Method 3: Traditional Installation
 Standard add-on installation for older Blender versions.
 
+## 🔧 Development & Deployment
+
+For developers working with these extensions:
+
+### Initial Setup
+```bash
+npx kract@latest blender init
+```
+
+### Package Extensions
+Create distribution-ready packages for all extensions:
+```bash
+npx kract@latest blender package
+```
+
+### Deploy to Remote Repository
+Deploy packaged extensions to the remote repository:
+```bash
+npx kract@latest blender deploy
+```
+
+**Note**: Initial setup with `kract blender init` is required before packaging and deployment.
+
 ## 🎨 Key Features Across Collection
 
 - **🌍 Multilingual Support**: Full English and Japanese interfaces
