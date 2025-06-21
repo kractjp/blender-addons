@@ -1,0 +1,18 @@
+schema_version = "1.0.0"
+
+id = "nukeshima"
+name = "Nukeshima"
+tagline = "Silent deletion without annoying confirmation dialogs"
+version = "1.0.0"
+type = "add-on"
+
+maintainer = "KRACT"
+license = ["GPL-3.0-or-later"]
+
+blender_version_min = "4.2.0"
+
+website = "https://github.com/kractjp/blender-addons/tree/main/nukeshima"
+tags = ["3D View", "Modeling", "User Interface"]
+
+[permissions]
+files = "Access to delete objects and mesh elements"
