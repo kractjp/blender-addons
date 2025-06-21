@@ -1,0 +1,24 @@
+# Blender extension manifest for Viewpie
+# This enables installation as a ZIP file and drag-and-drop support in Blender 4.2+
+
+schema_version = "1.0.0"
+
+id = "viewpie"
+name = "Viewpie"
+tagline = "Navigate 3D viewport with an intuitive pie menu for quick view changes"
+version = "1.0.0"
+type = "add-on"
+
+maintainer = "KRACT"
+license = ["SPDX:GPL-3.0-or-later"]
+
+blender_version_min = "4.2.0"
+
+website = "https://github.com/kractjp/blender-addons/tree/main/viewpie"
+tags = ["3D View", "Navigation", "Pie Menu", "Viewport", "Camera"]
+
+[permissions]
+# No special permissions required for this add-on
+
+[build]
+optimized_size = true
