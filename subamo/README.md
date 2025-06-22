@@ -70,7 +70,8 @@ Subamo uses Blender's built-in backup settings:
 ## Folder Structure
 
 **Before Subamo:**
-```
+
+```folder
 project_folder/
 ├── myproject.blend
 ├── myproject.blend1
@@ -79,7 +80,8 @@ project_folder/
 ```
 
 **After Subamo:**
-```
+
+```folder
 project_folder/
 ├── myproject.blend
 └── backup/
