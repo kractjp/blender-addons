@@ -15,7 +15,11 @@ bl_info = {
 
 class HIDEX_HiddenObject(PropertyGroup):
     """Property group to store hidden object information"""
-    name: StringProperty(name="Object Name")
+    object_pointer: bpy.props.PointerProperty(
+        name="Object Pointer",
+        type=bpy.types.Object,
+        description="Direct reference to the hidden object"
+    )
     original_hide_viewport: bpy.props.BoolProperty(name="Original Viewport Hide State")
     original_hide_render: bpy.props.BoolProperty(name="Original Render Hide State")
 
@@ -41,7 +45,7 @@ class HIDEX_OT_hide_selected(bpy.types.Operator):
         for obj in selected_objects:
             # Store original visibility states
             hidden_obj = scene.hidex_hidden_objects.add()
-            hidden_obj.name = obj.name
+            hidden_obj.object_pointer = obj
             hidden_obj.original_hide_viewport = obj.hide_viewport
             hidden_obj.original_hide_render = obj.hide_render
             
@@ -60,7 +64,7 @@ class HIDEX_OT_show_object(bpy.types.Operator):
     bl_label = "Show Object"
     bl_options = {'REGISTER', 'UNDO'}
     
-    object_name: StringProperty(name="Object Name")
+    object_index: bpy.props.IntProperty(name="Object Index")
     
     def execute(self, context):
         scene = context.scene
@@ -68,25 +72,18 @@ class HIDEX_OT_show_object(bpy.types.Operator):
         if not hasattr(scene, 'hidex_hidden_objects'):
             return {'CANCELLED'}
         
-        # Find the hidden object entry
-        hidden_obj = None
-        hidden_index = -1
-        for i, obj_data in enumerate(scene.hidex_hidden_objects):
-            if obj_data.name == self.object_name:
-                hidden_obj = obj_data
-                hidden_index = i
-                break
-        
-        if hidden_obj is None:
-            self.report({'WARNING'}, _("Object '{}' not found in hidden list").format(self.object_name))
+        # Check if index is valid
+        if self.object_index >= len(scene.hidex_hidden_objects):
+            self.report({'WARNING'}, _("Invalid object index"))
             return {'CANCELLED'}
         
-        # Find the actual object in scene
-        obj = scene.objects.get(self.object_name)
+        hidden_obj = scene.hidex_hidden_objects[self.object_index]
+        obj = hidden_obj.object_pointer
+        
         if obj is None:
             # Object was deleted, remove from hidden list
-            scene.hidex_hidden_objects.remove(hidden_index)
-            self.report({'WARNING'}, _("Object '{}' no longer exists").format(self.object_name))
+            scene.hidex_hidden_objects.remove(self.object_index)
+            self.report({'WARNING'}, _("Object no longer exists"))
             return {'CANCELLED'}
         
         # Restore original visibility states
@@ -95,9 +92,9 @@ class HIDEX_OT_show_object(bpy.types.Operator):
         obj.hide_set(hidden_obj.original_hide_viewport)  # Restore viewport visibility
         
         # Remove from hidden list
-        scene.hidex_hidden_objects.remove(hidden_index)
+        scene.hidex_hidden_objects.remove(self.object_index)
         
-        self.report({'INFO'}, _("Showed object '{}'").format(self.object_name))
+        self.report({'INFO'}, _("Showed object '{}'").format(obj.name))
         return {'FINISHED'}
 
 class HIDEX_OT_show_all(bpy.types.Operator):
@@ -120,7 +117,7 @@ class HIDEX_OT_show_all(bpy.types.Operator):
         # Process in reverse order to avoid index issues when removing items
         for i in range(len(scene.hidex_hidden_objects) - 1, -1, -1):
             hidden_obj = scene.hidex_hidden_objects[i]
-            obj = scene.objects.get(hidden_obj.name)
+            obj = hidden_obj.object_pointer
             
             if obj is not None:
                 # Restore original visibility states
@@ -166,11 +163,11 @@ class HIDEX_PT_panel(bpy.types.Panel):
         
         if hasattr(scene, 'hidex_hidden_objects') and len(scene.hidex_hidden_objects) > 0:
             box = layout.box()
-            for hidden_obj in scene.hidex_hidden_objects:
+            for i, hidden_obj in enumerate(scene.hidex_hidden_objects):
                 row = box.row(align=True)
                 
                 # Check if object still exists and get appropriate icon
-                obj = scene.objects.get(hidden_obj.name)
+                obj = hidden_obj.object_pointer
                 if obj is not None:
                     # Get object type icon
                     icon_map = {
@@ -186,13 +183,13 @@ class HIDEX_PT_panel(bpy.types.Panel):
                         'CAMERA': 'OUTLINER_OB_CAMERA',
                     }
                     obj_icon = icon_map.get(obj.type, 'OBJECT_DATA')
-                    row.label(text=hidden_obj.name, icon=obj_icon, translate=False)
+                    row.label(text=obj.name, icon=obj_icon, translate=False)
                 else:
-                    row.label(text=f"{hidden_obj.name} ({_('deleted')})", icon='ERROR', translate=False)
+                    row.label(text=f"({_('deleted')})", icon='ERROR', translate=False)
                 
                 # Show button for individual object
                 op = row.operator("hidex.show_object", text="", icon='HIDE_OFF')
-                op.object_name = hidden_obj.name
+                op.object_index = i
         else:
             box = layout.box()
             box.label(text=_("No hidden objects"), icon='INFO')
@@ -251,8 +248,8 @@ translations_dict = {
         ("*", "No hidden objects"): "非表示オブジェクトなし",
         ("*", "No valid objects selected"): "有効なオブジェクトが選択されていません",
         ("*", "Hidden {} objects"): "{}個のオブジェクトを非表示にしました",
-        ("*", "Object '{}' not found in hidden list"): "オブジェクト'{}'が非表示リストに見つかりません",
-        ("*", "Object '{}' no longer exists"): "オブジェクト'{}'は存在しません",
+        ("*", "Invalid object index"): "無効なオブジェクトインデックス",
+        ("*", "Object no longer exists"): "オブジェクトは存在しません",
         ("*", "Showed object '{}'"): "オブジェクト'{}'を表示しました",
         ("*", "No hidden objects to show"): "表示する非表示オブジェクトがありません",
         ("*", "Showed {} objects"): "{}個のオブジェクトを表示しました",
