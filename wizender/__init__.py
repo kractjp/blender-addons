@@ -6,7 +6,7 @@ from bpy.props import StringProperty, EnumProperty
 bl_info = {
     "name": "Wizender",
     "author": "KRACT",
-    "version": (1, 0),
+    "version": (1, 0, 1),
     "blender": (4, 2, 0),
     "location": "Properties > Output Properties > Wizender",
     "description": "Sets render output settings based on project file name via UI button or on save.",
@@ -123,7 +123,7 @@ class WIZENDER_PT_output_panel(bpy.types.Panel):
     bl_space_type = 'PROPERTIES'
     bl_region_type = 'WINDOW'
     bl_context = "output"
-    bl_options = {'DEFAULT_CLOSED'}
+    bl_parent_id = "RENDER_PT_output"
 
     def draw(self, context):
         layout = self.layout

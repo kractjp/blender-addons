@@ -46,6 +46,23 @@ Get all extensions directly from our third-party Blender Extension Registry:
 - **Features**: Auto-configuration on save, project name placeholders, customizable presets
 - **Perfect for**: Consistent render output, automated workflows, batch rendering
 
+### 👁️ hideX (/ˈhaɪdeks/)
+**Enhanced object visibility control**
+- **Hotkeys**: `H` (enhanced hide)
+- **Features**: Hide objects from both viewport and render, individual object management, state restoration
+- **Perfect for**: Scene organization, render optimization, clean viewport workflows
+
+### 📁 Subamo
+**Automatic backup file organization**
+- **Features**: Auto-organize backup files into subdirectories, backup management panel, file information display
+- **Perfect for**: Clean project folders, backup management, professional project organization
+
+### 🗑️ Nukeshima
+**Silent object deletion**
+- **Hotkeys**: `X` (smart delete) / `Shift+X` (delete menu)
+- **Features**: No confirmation dialogs, smart delete logic, full delete menu access
+- **Perfect for**: Fast modeling workflows, cleanup operations, uninterrupted editing
+
 ## 🚀 Installation Methods
 
 ### Method 1: Remote Repository (Recommended)
@@ -97,7 +114,10 @@ npx kract@latest blender deploy
 | **Viewcam** | 1.0.0 | `Cmd/Ctrl+Shift+C` | Camera positioning and navigation |
 | **Versave** | 1.0.0 | `Cmd/Ctrl+Alt+S` | Enhanced file versioning system |
 | **Toggle Translated UI** | 3.1.0 | `END` | Quick UI language switching |
-| **Wizender** | 1.0.0 | Auto on save | Smart render settings automation |
+| **Wizender** | 1.0.1 | Auto on save | Smart render settings automation |
+| **hideX** | 1.0.0 | `H` | Enhanced object visibility control |
+| **Subamo** | 2.0.0 | Auto on save | Automatic backup file organization |
+| **Nukeshima** | 1.0.0 | `X` / `Shift+X` | Silent object deletion |
 
 ## 🎯 Workflow Integration Examples
 

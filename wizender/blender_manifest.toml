@@ -6,7 +6,7 @@ schema_version = "1.0.0"
 id = "wizender"
 name = "Wizender"
 tagline = "Magically configure render settings based on project filename"
-version = "1.0.0"
+version = "1.0.1"
 type = "add-on"
 
 maintainer = "KRACT"

@@ -1,0 +1,20 @@
+# Blender extension manifest for hideX
+# Advanced object visibility control with H key integration
+
+schema_version = "1.0.0"
+
+id = "hidex"
+name = "hideX"
+tagline = "Advanced object visibility control with H key integration"
+version = "1.0.0"
+type = "add-on"
+
+maintainer = "KRACT"
+license = ["SPDX:GPL-3.0-or-later"]
+
+blender_version_min = "4.2.0"
+
+website = "https://github.com/kractjp/blender-addons/tree/main/hideX"
+tags = ["3D View", "Object"]
+
+[permissions]
