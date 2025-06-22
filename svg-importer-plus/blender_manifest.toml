@@ -1,0 +1,24 @@
+# Blender extension manifest for SVG Importer Plus
+# This enables installation as a ZIP file and drag-and-drop support in Blender 4.2+
+
+schema_version = "1.0.0"
+
+id = "svg_importer_plus"
+name = "SVG Importer Plus"
+tagline = "Enhanced SVG import with automatic mesh conversion and origin centering"
+version = "1.0.0"
+type = "add-on"
+
+maintainer = "KRACT"
+license = ["SPDX:GPL-3.0-or-later"]
+
+blender_version_min = "4.2.0"
+
+website = "https://github.com/kractjp/blender-addons/tree/main/svg-importer-plus"
+tags = ["Import-Export", "Mesh", "User Interface"]
+
+[permissions]
+files = "Import SVG files and convert to mesh objects"
+
+[build]
+optimized_size = true
