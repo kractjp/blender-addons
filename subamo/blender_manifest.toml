@@ -1,11 +1,11 @@
-# Blender extension manifest for Versave
+# Blender extension manifest for Subamo
 # This enables installation as a ZIP file and drag-and-drop support in Blender 4.2+
 
 schema_version = "1.0.0"
 
-id = "versave"
-name = "Versave"
-tagline = "Enhanced incremental save with proper versioning format"
+id = "subamo"
+name = "Subamo"
+tagline = "Automatically organize Blender backup files into backup folder"
 version = "1.0.0"
 type = "add-on"
 
@@ -14,11 +14,11 @@ license = ["SPDX:GPL-3.0-or-later"]
 
 blender_version_min = "4.2.0"
 
-website = "https://github.com/kractjp/blender-addons/tree/main/versave"
+website = "https://github.com/kractjp/blender-addons/tree/main/subamo"
 tags = ["System"]
 
 [permissions]
-files = "Save versioned blend files to disk"
+files = "Move backup files to organized folder structure"
 
 [build]
 optimized_size = true
