@@ -6,7 +6,7 @@ schema_version = "1.0.0"
 id = "svg_importer_plus"
 name = "SVG Importer Plus"
 tagline = "Enhanced SVG import with automatic mesh conversion and origin centering"
-version = "1.0.0"
+version = "1.0.1"
 type = "add-on"
 
 maintainer = "KRACT"

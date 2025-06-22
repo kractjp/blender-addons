@@ -8,7 +8,7 @@ from bpy.app.translations import pgettext_iface as _
 bl_info = {
     "name": "SVG Importer Plus",
     "author": "KRACT", 
-    "version": (1, 0, 0),
+    "version": (1, 0, 1),
     "blender": (4, 2, 0),
     "description": "Enhanced SVG import with automatic mesh conversion and origin centering",
     "location": "File > Import > SVG Importer Plus (.svg)",
@@ -58,6 +58,9 @@ class IMPORT_OT_svg_plus(Operator, ImportHelper):
             self.report({'WARNING'}, _("No objects were imported"))
             return {'CANCELLED'}
         
+        # Remove SVG材質 material from all newly imported objects
+        self.remove_svg_materials(new_objects)
+        
         # Store statistics
         converted_count = 0
         centered_count = 0
@@ -100,6 +103,22 @@ class IMPORT_OT_svg_plus(Operator, ImportHelper):
         self.report({'INFO'}, _(", ").join(messages))
         
         return {'FINISHED'}
+
+    def remove_svg_materials(self, objects):
+        """Remove all materials from imported objects to prevent SVG material assignment"""
+        for obj in objects:
+            if obj.data and hasattr(obj.data, 'materials'):
+                # Clear all materials from the object
+                obj.data.materials.clear()
+        
+        # Clean up unused materials from Blender's material database
+        materials_to_remove = []
+        for material in bpy.data.materials:
+            if material.name.startswith("SVG") and material.users == 0:
+                materials_to_remove.append(material)
+        
+        for material in materials_to_remove:
+            bpy.data.materials.remove(material)
 
     def draw(self, context):
         layout = self.layout
