@@ -90,6 +90,7 @@ class WIZENDER_AddonPreferences(bpy.types.AddonPreferences):
 
 # 設定処理本体
 def set_render_settings():
+    """Set render settings based on project filename and addon preferences"""
     filepath = bpy.data.filepath
     if not filepath:
         print("[Wizender] Filepath is empty. Save the project first.")

@@ -15,6 +15,10 @@ license = ["SPDX:GPL-3.0-or-later"]
 blender_version_min = "4.2.0"
 
 website = "https://github.com/kractjp/blender-addons/tree/main/hideX"
-tags = ["3D View", "Object"]
+tags = ["3D View", "Object", "User Interface"]
 
 [permissions]
+files = "Access to hide and show objects in viewport"
+
+[build]
+optimized_size = true

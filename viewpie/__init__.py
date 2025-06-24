@@ -1,8 +1,5 @@
 import bpy
-import bmesh
-from mathutils import Matrix, Vector
 from bpy.types import Menu
-import platform
 
 bl_info = {
     "name": "Viewpie",
@@ -78,7 +75,6 @@ class VIEWPIE_OT_set_view(bpy.types.Operator):
     """Set 3D viewport to specific view"""
     bl_idname = "viewpie.set_view"
     bl_label = "Set View"
-    bl_options = {'REGISTER', 'UNDO'}
     
     view_type: bpy.props.StringProperty(name="View Type")
     
@@ -122,7 +118,6 @@ class VIEWPIE_OT_toggle_projection(bpy.types.Operator):
     """Toggle between perspective and orthographic projection"""
     bl_idname = "viewpie.toggle_projection"
     bl_label = "Toggle Projection"
-    bl_options = {'REGISTER', 'UNDO'}
     
     @classmethod
     def poll(cls, context):
@@ -222,7 +217,6 @@ class VIEWPIE_OT_call_pie_menu(bpy.types.Operator):
     """Call Viewpie pie menu"""
     bl_idname = "viewpie.call_pie_menu"
     bl_label = "Viewpie Pie Menu"
-    bl_options = {'REGISTER', 'UNDO'}
     
     extended: bpy.props.BoolProperty(
         name="Extended Menu",

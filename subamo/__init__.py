@@ -138,17 +138,6 @@ def organize_backup_files(current_filepath):
     
     return moved_count
 
-@persistent
-def load_post_handler(dummy):
-    """ファイル読み込み後にプロジェクト設定を適用"""
-    try:
-        current_filepath = bpy.data.filepath
-        if current_filepath:
-            config = get_project_config(current_filepath)
-            # Blenderのバックアップ作成設定をプロジェクト設定に合わせる
-            bpy.context.preferences.filepaths.save_version = config['backup_count']
-    except Exception as e:
-        print(f"Subamo: Error applying project settings: {str(e)}")
 
 @persistent
 def save_post_handler(dummy):

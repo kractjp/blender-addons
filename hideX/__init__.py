@@ -1,5 +1,5 @@
 import bpy
-from bpy.props import CollectionProperty, StringProperty
+from bpy.props import CollectionProperty
 from bpy.types import PropertyGroup
 from bpy.app.translations import pgettext_iface as _
 
@@ -155,7 +155,6 @@ class HIDEX_PT_panel(bpy.types.Panel):
         layout.separator()
         
         # Hidden objects list
-        import bpy
         if bpy.app.translations.locale == 'ja_JP':
             layout.label(text="非表示:")
         else:
@@ -197,46 +196,6 @@ class HIDEX_PT_panel(bpy.types.Panel):
 # Keymap handling
 addon_keymaps = []
 
-def register():
-    """Register addon"""
-    bpy.utils.register_class(HIDEX_HiddenObject)
-    bpy.utils.register_class(HIDEX_OT_hide_selected)
-    bpy.utils.register_class(HIDEX_OT_show_object)
-    bpy.utils.register_class(HIDEX_OT_show_all)
-    bpy.utils.register_class(HIDEX_PT_panel)
-    
-    # Add property to scene
-    bpy.types.Scene.hidex_hidden_objects = CollectionProperty(type=HIDEX_HiddenObject)
-    
-    # Add keymap to override default H key behavior
-    wm = bpy.context.window_manager
-    if wm.keyconfigs.addon:
-        # Override in Object Mode
-        km = wm.keyconfigs.addon.keymaps.new(name='Object Mode', space_type='EMPTY')
-        kmi = km.keymap_items.new('hidex.hide_selected', 'H', 'PRESS')
-        addon_keymaps.append((km, kmi))
-        
-        # Override in 3D View Generic
-        km = wm.keyconfigs.addon.keymaps.new(name='3D View Generic', space_type='VIEW_3D')
-        kmi = km.keymap_items.new('hidex.hide_selected', 'H', 'PRESS')
-        addon_keymaps.append((km, kmi))
-
-def unregister():
-    """Unregister addon"""
-    # Remove keymap
-    for km, kmi in addon_keymaps:
-        km.keymap_items.remove(kmi)
-    addon_keymaps.clear()
-    
-    # Remove property from scene
-    del bpy.types.Scene.hidex_hidden_objects
-    
-    bpy.utils.unregister_class(HIDEX_PT_panel)
-    bpy.utils.unregister_class(HIDEX_OT_clear_deleted)
-    bpy.utils.unregister_class(HIDEX_OT_show_all)
-    bpy.utils.unregister_class(HIDEX_OT_show_object)
-    bpy.utils.unregister_class(HIDEX_OT_hide_selected)
-    bpy.utils.unregister_class(HIDEX_HiddenObject)
 
 # Translation dictionary
 translations_dict = {
@@ -306,7 +265,6 @@ def unregister():
     del bpy.types.Scene.hidex_hidden_objects
     
     bpy.utils.unregister_class(HIDEX_PT_panel)
-    bpy.utils.unregister_class(HIDEX_OT_clear_deleted)
     bpy.utils.unregister_class(HIDEX_OT_show_all)
     bpy.utils.unregister_class(HIDEX_OT_show_object)
     bpy.utils.unregister_class(HIDEX_OT_hide_selected)
