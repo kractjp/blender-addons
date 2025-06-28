@@ -1,0 +1,24 @@
+# Blender extension manifest for Vexer
+# Progressive vertex and edge addition (1D->2D->3D)
+
+schema_version = "1.0.0"
+
+id = "vexer"
+name = "Vexer"
+tagline = "Progressive vertex and edge addition (1D->2D->3D)"
+version = "1.0.0"
+type = "add-on"
+
+maintainer = "KRACT"
+license = ["SPDX:GPL-3.0-or-later"]
+
+blender_version_min = "4.2.0"
+
+website = "https://github.com/kractjp/blender-addons/tree/main/vexer"
+tags = ["Add Mesh", "Modeling", "Mesh"]
+
+[permissions]
+files = "Create basic geometric primitives with vertices and edges"
+
+[build]
+optimized_size = true
