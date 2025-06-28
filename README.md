@@ -35,12 +35,6 @@ Get all extensions directly from our third-party Blender Extension Registry:
 - **Features**: Automatic "_v" prefix versioning, project structure creation, smart version detection, visual version switching
 - **Perfect for**: Professional project organization, consistent file naming, version control, quick version switching
 
-### 🌍 Toggle Translated UI
-**Quick UI language switching**
-- **Hotkeys**: `END` key
-- **Features**: One-click EN/JP toggle, custom language icons, header integration
-- **Perfect for**: Multilingual workflows, tutorials, international collaboration
-
 ### 🎨 Wizender
 **Smart render settings automation**
 - **Features**: Auto-configuration on save, project name placeholders, customizable presets
@@ -62,6 +56,16 @@ Get all extensions directly from our third-party Blender Extension Registry:
 - **Hotkeys**: `X` (smart delete) / `Shift+X` (delete menu)
 - **Features**: No confirmation dialogs, smart delete logic, full delete menu access
 - **Perfect for**: Fast modeling workflows, cleanup operations, uninterrupted editing
+
+### 📄 SVG Importer Plus
+**Enhanced SVG import with automatic mesh conversion**
+- **Features**: Import SVG files and convert to mesh objects, automatic origin centering, optimized import workflow
+- **Perfect for**: Logo design integration, 2D to 3D conversion, graphic design workflows
+
+### 🔺 Vexer
+**Progressive geometric primitive creation**
+- **Features**: Create basic geometric primitives with progressive vertex and edge addition (1D→2D→3D)
+- **Perfect for**: Basic modeling, educational purposes, geometric foundation building
 
 ## 🚀 Installation Methods
 
@@ -113,11 +117,12 @@ npx kract@latest blender deploy
 | **Viewpie** | 1.0.0 | `Q` / `Shift+Q` | 3D viewport navigation with pie menus |
 | **Viewcam** | 1.0.0 | `Cmd/Ctrl+Shift+C` | Camera positioning and navigation |
 | **Versave** | 1.0.1 | `Cmd/Ctrl+Alt+S` / `Cmd/Ctrl+Shift+E` | Enhanced file versioning system with version manager |
-| **Toggle Translated UI** | 3.1.0 | `END` | Quick UI language switching |
 | **Wizender** | 1.0.1 | Auto on save | Smart render settings automation |
 | **hideX** | 1.0.0 | `H` | Enhanced object visibility control |
 | **Subamo** | 1.0.1 | Auto on save | Automatic backup file organization |
 | **Nukeshima** | 1.0.0 | `X` / `Shift+X` | Silent object deletion |
+| **SVG Importer Plus** | 1.0.1 | Import menu | Enhanced SVG import with mesh conversion |
+| **Vexer** | 1.0.0 | Add menu | Progressive geometric primitive creation |
 
 ## 🎯 Workflow Integration Examples
 
@@ -130,21 +135,23 @@ npx kract@latest blender deploy
 ### 🎬 Animation Production Workflow  
 1. **Viewpie**: Quick viewport changes during blocking and keyframing
 2. **Viewcam**: Camera positioning and "Lock Camera to View" for cinematography
-3. **Toggle Translated UI**: Switch languages for international team collaboration
-4. **Versave**: Version control for animation iterations + instant access to previous versions
+3. **Versave**: Version control for animation iterations + instant access to previous versions
+4. **Nukeshima**: Fast object deletion without interrupting animation flow
 
 ### 🎨 General 3D Modeling Workflow
 1. **Viewpie**: Fast view switching during modeling (Front → Right → Top → Camera)
 2. **Viewcam**: Check composition and framing frequently
 3. **Versave**: Automatic version management with organized project structure + version manager for quick comparisons
-4. **Wizender**: Consistent render output settings across projects
+4. **Vexer**: Create basic geometric primitives for modeling foundations
+5. **SVG Importer Plus**: Import logos and 2D graphics for 3D integration
 
 ## 💡 Pro Tips
 
 - **Combine Viewpie + Viewcam**: Use `Q` for quick view changes, then `Cmd+Shift+C` to match camera
 - **Versave + Wizender**: Automatic project organization with render settings applied on save
 - **Versave Version Manager**: Save frequently and use `Cmd+Shift+E` to quickly compare different approaches or revert changes
-- **Toggle Translated UI**: Switch languages without system changes - perfect for tutorials
+- **SVG + Versave**: Import logos with SVG Importer Plus and maintain clean project versions
+- **Vexer + Nukeshima**: Create basic shapes with Vexer, then use silent deletion for rapid iteration
 - **Muscle Memory**: Practice pie menu directions for lightning-fast viewport navigation
 
 ## 🔧 System Requirements
@@ -180,7 +187,3 @@ npx kract@latest blender deploy
 ## 📄 License
 
 All extensions in this collection are licensed under **GPL 3.0 or later**.
-
----
-
-*Transform your Blender workflow with professional-grade extensions designed for efficiency, consistency, and creativity.*
