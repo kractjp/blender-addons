@@ -6,7 +6,7 @@ schema_version = "1.0.0"
 id = "subamo"
 name = "Subamo"
 tagline = "Automatically organize Blender backup files into backup folder"
-version = "1.0.0"
+version = "1.0.1"
 type = "add-on"
 
 maintainer = "KRACT"

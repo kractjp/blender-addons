@@ -9,9 +9,9 @@ from bpy.app.translations import pgettext_iface as _
 bl_info = {
     "name": "Subamo",
     "author": "KRACT",
-    "version": (2, 0, 0),
+    "version": (1, 0, 1),
     "blender": (4, 2, 0),
-    "description": "Automatically organize Blender backup files (.blend1, .blend2) into a backup subdirectory",
+    "description": "Automatically organize Blender backup files (.blend1 to .blend32) into a backup subdirectory",
     "location": "File > Save",
     "category": "System"
 }
@@ -38,7 +38,7 @@ class SUBAMO_OT_delete_backup(bpy.types.Operator):
         base_name = os.path.splitext(current_filename)[0]
         backup_dir = os.path.join(current_dir, "backup")
         
-        backup_extensions = ['.blend1', '.blend2', '.blend3', '.blend4', '.blend5']
+        backup_extensions = [f'.blend{i}' for i in range(1, 33)]  # .blend1 to .blend32
         
         if self.backup_index < len(backup_extensions):
             ext = backup_extensions[self.backup_index]
@@ -77,7 +77,7 @@ class SUBAMO_OT_open_backup(bpy.types.Operator):
         base_name = os.path.splitext(current_filename)[0]
         backup_dir = os.path.join(current_dir, "backup")
         
-        backup_extensions = ['.blend1', '.blend2', '.blend3', '.blend4', '.blend5']
+        backup_extensions = [f'.blend{i}' for i in range(1, 33)]  # .blend1 to .blend32
         
         if self.backup_index < len(backup_extensions):
             ext = backup_extensions[self.backup_index]
@@ -110,8 +110,8 @@ def organize_backup_files(current_filepath):
     # backupフォルダのパスを作成
     backup_dir = os.path.join(current_dir, "backup")
     
-    # バックアップファイルの拡張子リスト
-    backup_extensions = ['.blend1', '.blend2', '.blend3', '.blend4', '.blend5']
+    # バックアップファイルの拡張子リスト（Blenderの最大32個に対応）
+    backup_extensions = [f'.blend{i}' for i in range(1, 33)]  # .blend1 to .blend32
     
     moved_count = 0
     
@@ -172,7 +172,7 @@ class SUBAMO_PT_panel(bpy.types.Panel):
             
             if os.path.exists(backup_dir):
                 # 同じプロジェクトのバックアップファイル一覧を取得
-                backup_extensions = ['.blend1', '.blend2', '.blend3', '.blend4', '.blend5']
+                backup_extensions = [f'.blend{i}' for i in range(1, 33)]  # .blend1 to .blend32
                 backup_files = []
                 
                 for i, ext in enumerate(backup_extensions):
@@ -191,55 +191,59 @@ class SUBAMO_PT_panel(bpy.types.Panel):
                             'size': round(stat.st_size / 1024 / 1024, 1)  # MB
                         })
                 
+                # バックアップファイルを新しい順にソート（番号が大きい = 新しい）
+                backup_files.sort(key=lambda x: int(x['number']), reverse=True)
+                
                 if backup_files:
-                    # ヘッダー行
-                    header_row = layout.row()
-                    header_row.scale_y = 0.8
-                    header_row.label(text="#")
-                    header_row.label(text="Date")
-                    header_row.label(text="Size")
-                    header_row.label(text="Actions")
-                    
-                    layout.separator(factor=0.3)
-                    
-                    # スクロール可能なボックス
+                    # Versave風のリスト表示
                     box = layout.box()
                     
-                    # 最大5行表示、それ以上はスクロール
-                    max_visible_rows = 5
+                    col = box.column(align=False)
+                    max_visible_rows = 10  # 最大表示数（32個まで対応するため少し増加）
+                    
                     for i, backup in enumerate(backup_files[:max_visible_rows]):
-                        # データ行
-                        data_row = box.row(align=True)
-                        data_row.scale_y = 0.9
+                        # アイテム間の間隔
+                        if i > 0:
+                            col.separator(factor=0.3)
                         
-                        # バックアップ番号
-                        data_row.label(text=backup['number'])
+                        row = col.row(align=True)
                         
-                        # 作成日時
-                        data_row.label(text=backup['datetime'])
+                        # バックアップアイコン
+                        row.label(text="", icon='FILE_BACKUP')
                         
-                        # ファイルサイズ
-                        data_row.label(text=f"{backup['size']}MB")
+                        # バックアップ番号（固定幅・番号大きい=新しい）
+                        number_col = row.column()
+                        number_col.ui_units_x = 2.0  # 2桁対応のため幅を拡張
+                        number_col.label(text=f"#{backup['number']}")
                         
-                        # アクション ボタン
-                        action_col = data_row.column(align=True)
-                        action_col.scale_x = 1.2
-                        action_buttons = action_col.row(align=True)
-                        action_buttons.scale_x = 0.9
+                        # 日時（固定幅）
+                        date_col = row.column()
+                        date_col.ui_units_x = 4.0
+                        date_col.label(text=backup['datetime'])
                         
-                        # Open ボタン（アイコンのみ）
-                        open_op = action_buttons.operator("subamo.open_backup", text="", icon='FILE_FOLDER')
+                        # ファイルサイズ（固定幅・右寄せ）
+                        size_col = row.column()
+                        size_col.ui_units_x = 3.5
+                        size_col.alignment = 'RIGHT'
+                        size_col.label(text=f"{backup['size']}MB")
+                        
+                        # スペーサー
+                        row.separator()
+                        
+                        # 開くボタン
+                        open_op = row.operator("subamo.open_backup", text="", icon='FILE_FOLDER')
                         open_op.backup_index = backup['index']
+
+                        layout.separator()
                         
-                        # Delete ボタン（アイコンのみ、ゴミ箱アイコン）
-                        delete_op = action_buttons.operator("subamo.delete_backup", text="", icon='TRASH')
+                        # 削除ボタン
+                        delete_op = row.operator("subamo.delete_backup", text="", icon='TRASH')
                         delete_op.backup_index = backup['index']
                     
                     # 表示されていないファイルがある場合の表示
                     if len(backup_files) > max_visible_rows:
-                        info_row = box.row()
-                        info_row.scale_y = 0.7
-                        info_row.label(text=f"... and {len(backup_files) - max_visible_rows} more files")
+                        col.separator(factor=0.3)
+                        col.label(text=f"... {_('... and {} more files').format(len(backup_files) - max_visible_rows)}")
                     
                     # 統計情報
                     layout.separator(factor=0.5)

@@ -30,10 +30,10 @@ Get all extensions directly from our third-party Blender Extension Registry:
 - **Perfect for**: Cinematography, product rendering, animation blocking
 
 ### 📁 Versave
-**Enhanced file versioning system**
-- **Hotkeys**: `Cmd/Ctrl+S` (enhanced save) / `Cmd/Ctrl+Alt+S` (enhanced incremental save)
-- **Features**: Automatic "_v" prefix versioning, project structure creation, smart version detection
-- **Perfect for**: Professional project organization, consistent file naming, version control
+**Enhanced file versioning system with integrated version manager**
+- **Hotkeys**: `Cmd/Ctrl+S` (enhanced save) / `Cmd/Ctrl+Alt+S` (enhanced incremental save) / `Cmd/Ctrl+Shift+E` (version manager)
+- **Features**: Automatic "_v" prefix versioning, project structure creation, smart version detection, visual version switching
+- **Perfect for**: Professional project organization, consistent file naming, version control, quick version switching
 
 ### 🌍 Toggle Translated UI
 **Quick UI language switching**
@@ -112,11 +112,11 @@ npx kract@latest blender deploy
 |-----------|---------|---------|------------------|
 | **Viewpie** | 1.0.0 | `Q` / `Shift+Q` | 3D viewport navigation with pie menus |
 | **Viewcam** | 1.0.0 | `Cmd/Ctrl+Shift+C` | Camera positioning and navigation |
-| **Versave** | 1.0.0 | `Cmd/Ctrl+Alt+S` | Enhanced file versioning system |
+| **Versave** | 1.0.1 | `Cmd/Ctrl+Alt+S` / `Cmd/Ctrl+Shift+E` | Enhanced file versioning system with version manager |
 | **Toggle Translated UI** | 3.1.0 | `END` | Quick UI language switching |
 | **Wizender** | 1.0.1 | Auto on save | Smart render settings automation |
 | **hideX** | 1.0.0 | `H` | Enhanced object visibility control |
-| **Subamo** | 2.0.0 | Auto on save | Automatic backup file organization |
+| **Subamo** | 1.0.1 | Auto on save | Automatic backup file organization |
 | **Nukeshima** | 1.0.0 | `X` / `Shift+X` | Silent object deletion |
 
 ## 🎯 Workflow Integration Examples
@@ -124,25 +124,26 @@ npx kract@latest blender deploy
 ### 🏗️ Architectural Visualization Workflow
 1. **Viewpie**: Navigate through Front/Back/Left/Right views for elevation work
 2. **Viewcam**: Set up presentation camera angles with one click
-3. **Versave**: Maintain organized project versions with proper naming
+3. **Versave**: Maintain organized project versions with proper naming + quick version switching with `Cmd+Shift+E`
 4. **Wizender**: Auto-configure render settings for consistent output
 
 ### 🎬 Animation Production Workflow  
 1. **Viewpie**: Quick viewport changes during blocking and keyframing
 2. **Viewcam**: Camera positioning and "Lock Camera to View" for cinematography
 3. **Toggle Translated UI**: Switch languages for international team collaboration
-4. **Versave**: Version control for animation iterations
+4. **Versave**: Version control for animation iterations + instant access to previous versions
 
 ### 🎨 General 3D Modeling Workflow
 1. **Viewpie**: Fast view switching during modeling (Front → Right → Top → Camera)
 2. **Viewcam**: Check composition and framing frequently
-3. **Versave**: Automatic version management with organized project structure
+3. **Versave**: Automatic version management with organized project structure + version manager for quick comparisons
 4. **Wizender**: Consistent render output settings across projects
 
 ## 💡 Pro Tips
 
 - **Combine Viewpie + Viewcam**: Use `Q` for quick view changes, then `Cmd+Shift+C` to match camera
 - **Versave + Wizender**: Automatic project organization with render settings applied on save
+- **Versave Version Manager**: Save frequently and use `Cmd+Shift+E` to quickly compare different approaches or revert changes
 - **Toggle Translated UI**: Switch languages without system changes - perfect for tutorials
 - **Muscle Memory**: Practice pie menu directions for lightning-fast viewport navigation
 

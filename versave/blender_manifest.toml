@@ -5,8 +5,8 @@ schema_version = "1.0.0"
 
 id = "versave"
 name = "Versave"
-tagline = "Enhanced incremental save with proper versioning format"
-version = "1.0.0"
+tagline = "Enhanced incremental save with proper versioning format and integrated version manager"
+version = "1.0.1"
 type = "add-on"
 
 maintainer = "KRACT"
